@@ -152,6 +152,30 @@ Column.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CDataframes.dir\build.make CMakeFiles/CDataframes.dir/Column.c.s
 .PHONY : Column.c.s
 
+main.obj: main.c.obj
+.PHONY : main.obj
+
+# target to build an object file
+main.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CDataframes.dir\build.make CMakeFiles/CDataframes.dir/main.c.obj
+.PHONY : main.c.obj
+
+main.i: main.c.i
+.PHONY : main.i
+
+# target to preprocess a source file
+main.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CDataframes.dir\build.make CMakeFiles/CDataframes.dir/main.c.i
+.PHONY : main.c.i
+
+main.s: main.c.s
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CDataframes.dir\build.make CMakeFiles/CDataframes.dir/main.c.s
+.PHONY : main.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -164,6 +188,9 @@ help:
 	@echo ... Column.obj
 	@echo ... Column.i
 	@echo ... Column.s
+	@echo ... main.obj
+	@echo ... main.i
+	@echo ... main.s
 .PHONY : help
 
 

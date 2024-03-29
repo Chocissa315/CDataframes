@@ -12,4 +12,6 @@ add_executable(CDataframes
         .idea/vcs.xml
         Column.c
         Column.h
-        README.md)
+        README.md
+        main.c
+)

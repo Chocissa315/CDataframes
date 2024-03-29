@@ -105,6 +105,9 @@
 		<Unit filename="C:/Users/noahj/CLionProjects/CDataframes/README.md">
 			<Option target="CDataframes"/>
 		</Unit>
+		<Unit filename="C:/Users/noahj/CLionProjects/CDataframes/main.c">
+			<Option target="CDataframes"/>
+		</Unit>
 		<Unit filename="C:/Users/noahj/CLionProjects/CDataframes/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
