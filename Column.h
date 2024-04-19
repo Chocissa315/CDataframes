@@ -55,7 +55,6 @@ typedef struct{
 COLUMN *create_column(ENUM_TYPE type , char *title);
 
 
-
 void test();
 
 
