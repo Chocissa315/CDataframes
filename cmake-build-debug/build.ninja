@@ -58,6 +58,15 @@ build CMakeFiles/CDataframes.dir/Column.c.obj: C_COMPILER__CDataframes_unscanned
   TARGET_COMPILE_PDB = CMakeFiles\CDataframes.dir\
   TARGET_PDB = CDataframes.pdb
 
+build CMakeFiles/CDataframes.dir/main.c.obj: C_COMPILER__CDataframes_unscanned_Debug C$:/Users/barry/CLionProjects/CDataframes/main.c || cmake_object_order_depends_target_CDataframes
+  DEP_FILE = CMakeFiles\CDataframes.dir\main.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/barry/CLionProjects/CDataframes/.
+  OBJECT_DIR = CMakeFiles\CDataframes.dir
+  OBJECT_FILE_DIR = CMakeFiles\CDataframes.dir
+  TARGET_COMPILE_PDB = CMakeFiles\CDataframes.dir\
+  TARGET_PDB = CDataframes.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CDataframes
@@ -66,7 +75,7 @@ build CMakeFiles/CDataframes.dir/Column.c.obj: C_COMPILER__CDataframes_unscanned
 #############################################
 # Link the executable CDataframes.exe
 
-build CDataframes.exe: C_EXECUTABLE_LINKER__CDataframes_Debug CMakeFiles/CDataframes.dir/Column.c.obj
+build CDataframes.exe: C_EXECUTABLE_LINKER__CDataframes_Debug CMakeFiles/CDataframes.dir/Column.c.obj CMakeFiles/CDataframes.dir/main.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\CDataframes.dir

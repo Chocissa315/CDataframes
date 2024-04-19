@@ -14,4 +14,5 @@ add_executable(CDataframes
         Column.h
         README.md
         main.c
+        list.h
 )
