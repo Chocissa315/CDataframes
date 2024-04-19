@@ -4,7 +4,7 @@
 
 void test(){
 
-    printf("I guess the test is working");
+    printf("the test is working");
 
 }
 

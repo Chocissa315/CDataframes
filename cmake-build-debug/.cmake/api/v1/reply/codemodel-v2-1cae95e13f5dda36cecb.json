@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "CDataframes::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-CDataframes-Debug-7a20910cfc755dd2a1b9.json",
+					"jsonFile" : "target-CDataframes-Debug-4b490a33580e08327740.json",
 					"name" : "CDataframes",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/barry/CLionProjects/CDataframes/cmake-build-debug",
-		"source" : "C:/Users/barry/CLionProjects/CDataframes"
+		"build" : "C:/Users/noahj/CLionProjects/CDataframes/cmake-build-debug",
+		"source" : "C:/Users/noahj/CLionProjects/CDataframes"
 	},
 	"version" : 
 	{
