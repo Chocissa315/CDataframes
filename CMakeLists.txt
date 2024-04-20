@@ -17,4 +17,5 @@ add_executable(CDataframes
         list.h
         cdataframe.c
         cdataframe.h
+        sort.h
 )
