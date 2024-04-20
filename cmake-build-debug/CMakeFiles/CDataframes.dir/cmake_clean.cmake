@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "CDataframes.pdb"
   "CMakeFiles/CDataframes.dir/Column.c.obj"
   "CMakeFiles/CDataframes.dir/Column.c.obj.d"
+  "CMakeFiles/CDataframes.dir/cdataframe.c.obj"
+  "CMakeFiles/CDataframes.dir/cdataframe.c.obj.d"
   "CMakeFiles/CDataframes.dir/main.c.obj"
   "CMakeFiles/CDataframes.dir/main.c.obj.d"
   "libCDataframes.dll.a"

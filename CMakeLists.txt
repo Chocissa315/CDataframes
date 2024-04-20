@@ -15,4 +15,6 @@ add_executable(CDataframes
         README.md
         main.c
         list.h
+        cdataframe.c
+        cdataframe.h
 )
