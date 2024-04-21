@@ -24,13 +24,46 @@ int main(){
 
 
     //now we need to add the new columns in order to be able to fill that table :
-    create_column(CHAR, "Type of potatoes : ");
+    COLUMN *col1 = create_column(CHAR, "Type of potatoes : ");
 
-    create_column(INT, "Number of Potatoes sold : ");
+    COLUMN *col2 = create_column(INT, "Number of Potatoes sold : ");
 
-    create_column(INT, "Amount of money made with this type : ");
+    COLUMN *col3 = create_column(INT, "Amount of money made with this type : ");
+
+    //now we need to link the columns created to the cdataframe by using a list :
+
+    list * liste = lst_create_list() ;
+
+    //we create nodds linked to the columns
+
+    lnode * node1 = lst_create_lnode(col1);
+
+    lnode * node2 = lst_create_lnode(col2);
+
+    lnode * node3 = lst_create_lnode(col3);
+
+    lst_insert_head(liste, node1);
+    lst_insert_after(liste, node2, node1);
+    lst_insert_tail(liste, node3);
+
+    //we now have the list of three columns, we can go through it, delete, add, move nodes inside it thanks to the
+    // various functions contained in the list.h file. We also can do the same operations directly on the column,
+    // to be able to modify and move values
+
+    //we can now hard fill the data inside the table by using the following function :
+
+    int nb_potatoe = 35 ;
+    int money_potatoes = 150;
+    insert_value(col1, "Regular Potatoes" );
+    insert_value(col2, &nb_potatoe);
+    insert_value(col3, &money_potatoes);
+
+    //now if we use the function display_CDataframe(), we will see the first ro filled with the datas of the regular
+    // potatoes sold during the day.
+
 
     //Now that we created the three colunmns, we can fill the using the following function :
+
 
 
 
