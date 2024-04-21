@@ -35,9 +35,9 @@ int get_cdataframe_cols_size(CDATAFRAME *cdf);
  * Create an empty CDataframe
 CDATAFRAME *create_cdataframe(ENUM_TYPE *cdftype, int size);
 
-* Fill the CDataframe vith the user input
+* Fill the CDataframe with the user input
  *
- * We first takethe pointer tp the dataframe then choose a column to fill
+ * We first take the pointer to the dataframe then choose a column to fill
 int fill_cdataframe(CDATAFRAME *cdf,char *col_name);
 
 * Hard filling of the dataframe

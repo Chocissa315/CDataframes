@@ -58,11 +58,13 @@ int main(){
     insert_value(col2, &nb_potatoe);
     insert_value(col3, &money_potatoes);
 
-    //now if we use the function display_CDataframe(), we will see the first ro filled with the datas of the regular
+    //now if we use the function display_CDataframe(), we will see the first row filled with the datas of the regular
     // potatoes sold during the day.
 
 
     //Now that we created the three colunmns, we can fill the using the following function :
+
+
 
 
 
