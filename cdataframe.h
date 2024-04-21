@@ -67,7 +67,8 @@ int fill_cdataframe(CDATAFRAME *cdf,char *col_name);
 /* FUNCTIONS OF USUAL OPERATIONS
  *
  * Add a row of values
- * Idea : ???
+ * Idea : going through all the columns using the nodes and add to the lists of data inside the column at a certain
+ * position (use the function insert_value that we need to code inside the column part)
  *
  *
  * Delete a row of values :
@@ -76,13 +77,18 @@ int fill_cdataframe(CDATAFRAME *cdf,char *col_name);
  *
  * Add a column
  * idea : We will use the functions of columns.h
+ * to add a column we would maybe just have to create a new column, create a node linked to it, and insert this node
+ * into the list of nodes by giving the previous one the address of this new node (instead of the next one) and the next
+ * one the address of this node (instead of the previous one)
  *
  * Delete a column
  * idea : same idea as before
+ * to ensure the possibility to go through the whole list, we will have to reconnect the node before and the node after
+ * by giving them the address of the next/previous one instead of the one we deleted
  *
  * Rename the title of a column in the CDataframe
  */
- void rename_cols(CDATAFRAME *cdf, char *col_name, char newname);
+ void rename_cols(CDATAFRAME *cdf, char *col_name, char* newname);
 
 /* search for a value
  * idea = ??
