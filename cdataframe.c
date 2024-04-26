@@ -2,12 +2,32 @@
 #include "list.h"
 #include <stdio.h>
 
-/* I need to create an DYNAMIC arrrays of pointers to the columns
- * so we need the size of the dataframe whiwh is the numbers of columnns ????????????
- * And maybe created them within the function which is logical
- * */
+/
 
 CDATAFRAME *create_cdataframe(ENUM_TYPE *cdftype, int size) {
+    ENUM_TYPE type;
+    char title;
+    void *dat;
+    lnode ptemp;
+    list *liste;
+
+
+    printf("Enter the column's name: ");
+    scanf("%s", &title);
+    liste = lst_create_list();
+
+    for(int i=0; i < size; i++){
+        dat = create_column(type, &title);
+        ptemp = *lst_create_lnode(dat);
+        if(i == 0) {
+            lst_insert_head(liste, &ptemp);
+        }
+        else{
+            lst_insert_tail(liste, &ptemp);
+        }
+
+    }
+
 
 
 }

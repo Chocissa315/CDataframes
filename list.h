@@ -19,22 +19,30 @@ typedef struct list_ {
 * création d'un noeud
 */
 lnode *lst_create_lnode(void *dat);
+
 /**
 * crée la liste et retourne un pointeur sur cette dernière
 */
 list *lst_create_list();
+
+
 /**
 * supprimer la liste
 */
 void lst_delete_list(list * lst);
+
 /**
 * Insère pnew au début de la liste lst
 */
 void lst_insert_head(list * lst, lnode * pnew);
+
+
 /**
 * Insère pnew à la fin de la liste lst
 */
 void lst_insert_tail(list * lst, lnode * pnew);
+
+
 /**
 * Insère l'élément pnew juste après ptr dans la liste lst
 */
