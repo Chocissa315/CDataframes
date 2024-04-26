@@ -126,3 +126,4 @@ void *get_previous_elem(list * lst, lnode * lnode) {
         return NULL;
     return lnode->prev;
 }
+
