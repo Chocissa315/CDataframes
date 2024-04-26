@@ -28,7 +28,7 @@ CDATAFRAME *create_cdataframe(ENUM_TYPE *cdftype, int size) {
 
     }
 
-
+    return liste;
 
 }
 
