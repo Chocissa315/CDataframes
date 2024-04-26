@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/barry/CLionProjects/CDataframes
+# Install script for directory: C:/Users/barry/OneDrive/Bureau/L1/Projet Transverse/Efrei jump/CDataframes
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/barry/CLionProjects/CDataframes/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/barry/OneDrive/Bureau/L1/Projet Transverse/Efrei jump/CDataframes/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

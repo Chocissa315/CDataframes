@@ -19,4 +19,9 @@ add_executable(CDataframes
         cdataframe.h
         sort.h
         sort.h
+        list.c
+        list.c
+        list.c
+        list.c
+        list.c
 )
