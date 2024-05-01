@@ -54,13 +54,20 @@ typedef struct{
 
 COLUMN *create_column(ENUM_TYPE type , char *title);
 
-int insert_value(COLUMN *col, void *value);
+
+int insert_value(COLUMN *col, void *value, ENUM_TYPE type_of_data);
+
 
 void delete_column(COLUMN **col);
 
+
 void convert_value(COLUMN *col, unsigned long long int i, char *str, int size);
 
+
 void print_col(COLUMN* col);
+
+
+
 
 
 
