@@ -13,24 +13,24 @@ void test(){
 COLUMN *create_column(ENUM_TYPE type , char* title){
 
     //creation of the column
-    COLUMN col1;
+    COLUMN* col1 = (COLUMN*)malloc(sizeof(COLUMN));
 
     //attribution of the parameters of the newly created column
-    col1.title = title ;
+    (*col1).title = title ;
 
-    col1.size = 0;
+    (*col1).size = 0;
 
-    col1.max_size = 0;
+    (*col1).max_size = 0;
 
-    col1.column_type = type ;
+    (*col1).column_type = type ;
 
-    col1.data = NULL ;
+    (*col1).data = NULL ;
 
-    col1.index = NULL ;
+    (*col1).index = NULL ;
 
     //returning the adress of the newly created column
 
-    return &col1;
+    return col1;
 
 }
 
@@ -47,7 +47,7 @@ int insert_value(COLUMN *col, void *value, ENUM_TYPE type_of_data){
                 switch (col->column_type) {
 
                     case INT :
-                        col->data[col->size] = (int*) malloc (sizeof(int));
+                        col->data = (COL_TYPE **) malloc (sizeof(COL_TYPE));
 
                         *((int*)col->data[col->size])= *((int*)value);
 
@@ -56,16 +56,17 @@ int insert_value(COLUMN *col, void *value, ENUM_TYPE type_of_data){
                         break;
 
                     case CHAR :
-                        col->data[col->size] = (char*) malloc (sizeof(char));
+                        col->data = (COL_TYPE **) malloc (sizeof(COL_TYPE));
 
-                        *((char*)col->data[col->size])= *((char*)value);
+
+                        col->data[col->size]->char_value= *((char*)value);
 
                         col->size +=1 ;
                         col->max_size += 1 ;
                         break ;
 
                     case FLOAT :
-                        col->data[col->size] = (float*) malloc (sizeof(float));
+                        col->data = (COL_TYPE **) malloc (sizeof(COL_TYPE));
 
                         *((float*)col->data[col->size])= *((float*)value);
 
@@ -74,7 +75,7 @@ int insert_value(COLUMN *col, void *value, ENUM_TYPE type_of_data){
                         break ;
 
                     case DOUBLE :
-                        col->data[col->size] = (double*) malloc (sizeof(double));
+                        col->data = (COL_TYPE **) malloc (sizeof(COL_TYPE));
 
                         *((double*)col->data[col->size])= *((double*)value);
 
@@ -83,7 +84,7 @@ int insert_value(COLUMN *col, void *value, ENUM_TYPE type_of_data){
                         break ;
 
                     case STRING :
-                        col->data[col->size] = (char**) malloc (sizeof(char*));
+                        col->data = (COL_TYPE **) malloc (sizeof(COL_TYPE));
 
                         *((char**)col->data[col->size])= *((char**)value);
 
@@ -92,7 +93,7 @@ int insert_value(COLUMN *col, void *value, ENUM_TYPE type_of_data){
                         break ;
 
                     case STRUCTURE :
-                        col->data[col->size] =  malloc (1);
+                        //col->data[col->size] =  malloc (1);
 
                         //*col->data[col->size] = *(value);
 
@@ -193,9 +194,87 @@ void delete_column(COLUMN **col){
 
 void convert_value(COLUMN *col, unsigned long long int i, char *str, int size){
 
-    char buffer[100];
 
-    
+    switch (col->column_type) {
+
+        case INT :
+            snprintf(str, size, "%d", *((int*)col->data[i]));
+            break;
+        case FLOAT :
+            snprintf(str, size, "%f", *((float*)col->data[i]));
+            break;
+        case CHAR :
+            snprintf(str, size, "%c", *((char*)col->data[i]));
+            break;
+        case DOUBLE :
+            snprintf(str, size, "%lf", *((double*)col->data[i]));
+            break;
+        case STRING :
+            snprintf(str, size, "%s", *((char**)col->data[i]));
+            break;
+        case STRUCTURE :
+            //snprintf(str, size, "", *((STRUCT*)col->data[i]));
+            break;
+
+    }
 
 }
+
+void print_col(COLUMN* col){
+
+    switch (col->column_type) {
+
+        case INT :
+            for (int i = 0 ; i< col->max_size ; i ++ ){
+
+                printf("[%d] %d \n", i,  *((int*)col->data[i]));
+
+
+            }
+        case CHAR :
+            for (int i = 0 ; i< col->max_size ; i ++ ){
+
+                printf("[%d] %c \n", i,  *((char*)col->data[i]));
+
+
+            }
+        case FLOAT :
+            for (int i = 0 ; i< col->max_size ; i ++ ){
+
+                printf("[%d] %f \n", i,  *((float*)col->data[i]));
+
+
+            }
+        case DOUBLE :
+            for (int i = 0 ; i< col->max_size ; i ++ ){
+
+                printf("[%d] %lf \n", i,  *((double*)col->data[i]));
+
+
+            }
+        case STRING :
+            for (int i = 0 ; i< col->max_size ; i ++ ){
+
+                printf("[%d] %s \n", i,  *((char**)col->data[i]));
+
+
+            }
+        case STRUCTURE :
+            for (int i = 0 ; i< col->max_size ; i ++ ){
+
+                //printf("[%d] %STRUCT \n", i,  *((STRUCT*)col->data[i]));
+
+
+            }
+
+    }
+
+}
+
+
+
+
+
+
+
 
