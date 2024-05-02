@@ -5,18 +5,18 @@
 
 
 CDATAFRAME *create_cdataframe(ENUM_TYPE *cdftype, int size) {
-    ENUM_TYPE type = *cdftype;
     char title[100];
-    void *dat;
+    COLUMN *dat;
     lnode *ptemp;
-    list *liste;
+    list *cdf;
 
     printf("Enter the column's name: ");
     scanf("%s", title);
-    liste = lst_create_list();
+
+    cdf = lst_create_list();
 
     for (int i = 0; i < size; i++) {
-        dat = create_column(type, title);
+        dat = create_column(*cdftype, title);
         ptemp = lst_create_lnode(dat);
         if (i == 0) {
             lst_insert_head(liste, ptemp);
@@ -25,7 +25,7 @@ CDATAFRAME *create_cdataframe(ENUM_TYPE *cdftype, int size) {
         }
     }
 
-    return liste;
+    return cdf;
 }
 
 
