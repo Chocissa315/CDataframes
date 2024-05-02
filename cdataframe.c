@@ -1,7 +1,7 @@
 #include "cdataframe.h"
 #include "list.h"
 #include <stdio.h>
-
+#include <stdlib.h>
 
 
 CDATAFRAME *create_cdataframe(ENUM_TYPE *cdftype, int size) {
@@ -13,15 +13,15 @@ CDATAFRAME *create_cdataframe(ENUM_TYPE *cdftype, int size) {
     printf("Enter the column's name: ");
     scanf("%s", title);
 
-    cdf = lst_create_list();
+    cdf = lst_create_list(); /* Creates the list/datafram */
 
     for (int i = 0; i < size; i++) {
-        dat = create_column(*cdftype, title);
-        ptemp = lst_create_lnode(dat);
+        dat = create_column(*cdftype, title); /* Creates a column */
+        ptemp = lst_create_lnode(dat); /* Creates a node with the column */
         if (i == 0) {
-            lst_insert_head(liste, ptemp);
+            lst_insert_head(cdf, ptemp); /* If it's the first iteration then we insert a head */
         } else {
-            lst_insert_tail(liste, ptemp);
+            lst_insert_tail(cdf, ptemp); /* Each time we need to create a new column, it inserts it as a tail like this we are sure that it will be added to the end of the list*/
         }
     }
 
@@ -32,17 +32,33 @@ CDATAFRAME *create_cdataframe(ENUM_TYPE *cdftype, int size) {
 
 void delete_cdataframe(CDATAFRAME **cdf){
 
-    /* What I can do is go through the Linked list and delete one by one the nodes which represents the cols
-     * in theory it can work Avec le go to the next it can work et on vérifie que le node n'est pas null*/
+    /*  **cdf points to the list so the list is given by *cdf sà it will use it with lst_delete_list that takes as parameter a list*/
+    if(*cdf != NULL){ /*e verify if the list is yet empty*/
+        lst_delete_list(*cdf); /* we use the lst_delete_list function to delete entirely the list*/
+        free(*cdf); /* We free the memory to be sure that we left nothin */
+        *cdf = NULL; /*we point to NULL to says that the cdataframe is totally empty */
+
+    }
 
 }
 
 int get_cdataframe_cols_size(CDATAFRAME *cdf){
+    /* For this function we take the first and last node. We set the actual node as the first one and iterate through the list going to the next_node until the actual node equals the last one.
+     * While doing this, we increment a counter that begins to one because we begin with the first node. This counter will give us the number of columns. */
+    lnode *last_node, *actual_node;
+    int count = 1;
 
+    last_node = get_last_node(cdf);
+    actual_node = get_first_node(cdf);
+
+    while(actual_node != last_node){
+        count += 1;
+        actual_node = get_next_node(cdf, actual_node);
+
+    }
+
+    return count;
 
 }
 
 
-/* DUcoup j'ai besoin du last node and maybe the first one and get the next node ?
- * as this I can maybe have the number of columns  and maybe the erase function too idk
- */
