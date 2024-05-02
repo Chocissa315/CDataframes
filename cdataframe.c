@@ -42,6 +42,19 @@ void delete_cdataframe(CDATAFRAME **cdf){
 
 }
 
+void delete_col(CDATAFRAME *cdf, char *col_name){
+    // Works like the delete_cdataframe function
+    lnode *actual_node;
+
+    actual_node = get_first_node(cdf);
+
+    while(actual_node != NULL){
+
+    }
+
+    // I  have to go through the list and found the node having the same name as the column then delete t=it
+}
+
 int get_cdataframe_cols_size(CDATAFRAME *cdf){
     /* For this function we take the first and last node. We set the actual node as the first one and iterate through the list going to the next_node until the actual node equals the last one.
      * While doing this, we increment a counter that begins to one because we begin with the first node. This counter will give us the number of columns. */
