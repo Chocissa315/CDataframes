@@ -44,130 +44,72 @@ int insert_value(COLUMN *col, void *value, ENUM_TYPE type_of_data){
             if (col->max_size == 0) {
             //this is the case where the list is empty and hence not yet initialized
 
-                switch (col->column_type) {
+                col->data = (COL_TYPE **) malloc (sizeof(COL_TYPE*));
 
-                    case INT :
-                        col->data = (COL_TYPE **) malloc (sizeof(COL_TYPE));
-
-                        *((int*)col->data[col->size])= *((int*)value);
-
-                        col->size +=1 ;
-                        col->max_size += 1;
-                        break;
-
-                    case CHAR :
-                        col->data = (COL_TYPE **) malloc (sizeof(COL_TYPE));
-
-
-                        col->data[col->size]->char_value= *((char*)value);
-
-                        col->size +=1 ;
-                        col->max_size += 1 ;
-                        break ;
-
-                    case FLOAT :
-                        col->data = (COL_TYPE **) malloc (sizeof(COL_TYPE));
-
-                        *((float*)col->data[col->size])= *((float*)value);
-
-                        col->size +=1 ;
-                        col->max_size += 1 ;
-                        break ;
-
-                    case DOUBLE :
-                        col->data = (COL_TYPE **) malloc (sizeof(COL_TYPE));
-
-                        *((double*)col->data[col->size])= *((double*)value);
-
-                        col->size +=1 ;
-                        col->max_size += 1 ;
-                        break ;
-
-                    case STRING :
-                        col->data = (COL_TYPE **) malloc (sizeof(COL_TYPE));
-
-                        *((char**)col->data[col->size])= *((char**)value);
-
-                        col->size +=1 ;
-                        col->max_size += 1 ;
-                        break ;
-
-                    case STRUCTURE :
-                        //col->data[col->size] =  malloc (1);
-
-                        //*col->data[col->size] = *(value);
-
-                        col->size +=1 ;
-                        col->max_size += 1 ;
-                        break ;
-
-                }
-
-
+                col->max_size += 1 ;
 
             }
-            else{
+
+            else {
                 //case where we need to extend the size but there's already a space allocated : use realloc
-                //do we need to code this part ?
 
-                switch (col->column_type) {
 
-                    case INT :
-                        col->data = realloc(col->data, (col->max_size+ 3)*sizeof (int ));
+                col->data = realloc(col->data, (col->max_size+ 3)*sizeof (COL_TYPE* ));
 
-                        *((int*)col->data[col->size])= *((int*)value);
-
-                        break ;
-
-                    case CHAR :
-                        col->data = realloc(col->data, (col->max_size+ 3)*sizeof (char ));
-
-                        *((char*)col->data[col->size])= *((char*)value);
-
-                        break ;
-
-                    case FLOAT :
-                        col->data = realloc(col->data, (col->max_size+ 3)*sizeof (float ));
-
-                        *((float *)col->data[col->size])= *((float *)value);
-
-                        break ;
-
-                    case DOUBLE:
-                        col->data = realloc(col->data, (col->max_size+ 3)*sizeof (double ));
-
-                        *((double*)col->data[col->size])= *((double*)value);
-
-                        break ;
-
-                    case STRING:
-                        col->data = realloc(col->data, (col->max_size+ 3)*sizeof (char* ));
-
-                        *((char**)col->data[col->size])= *((char**)value);
-
-                        break;
-
-                    case STRUCTURE :
-                        //col->data = realloc(col->data, (col->max_size+ 3)*sizeof ());
-                        break ;
-                }
-
-                col->size += 1 ;
 
                 col->max_size +=3;
 
             }
-
-
-
-
         }
 
-        else {
-            col->data[col->size] = value;
 
-            col->size += 1;
+
+        if (value != NULL) {
+
+            switch (col->column_type){
+
+                case INT :
+                    col->data[col->size] = (COL_TYPE*) malloc( sizeof(int));
+
+                    *((int *)(col->data[col->size])) = *((int*) value);
+                    break ;
+
+                case FLOAT :
+                    col->data[col->size] = (COL_TYPE*) malloc( sizeof(float));
+
+                    *((float *)(col->data[col->size])) = *((float*) value);
+                    break ;
+
+                case CHAR :
+                    col->data[col->size] = (COL_TYPE*) malloc( sizeof(char));
+
+                    *((char *)(col->data[col->size])) = *((char*) value);
+                    break ;
+
+                case DOUBLE :
+                    col->data[col->size] = (COL_TYPE*) malloc( sizeof(double));
+
+                    *((double *)(col->data[col->size])) = *((double*) value);
+                    break ;
+
+                case STRING :
+                    col->data[col->size] = (COL_TYPE*) malloc( sizeof(char*));
+
+                    *((char **)(col->data[col->size])) = *((char**) value);
+                    break ;
+
+            }
+
+
+
+
+            }
+
+        else{
+            (col->data[col->size]) = NULL;
         }
+
+        col->size +=1 ;
 
         return 1;
 
@@ -183,7 +125,7 @@ void delete_column(COLUMN **col){
 
     free((*col)->data);
 
-    free((*col)->title);
+    //free((*col)->title);
 
     free((*col)->index);
 
@@ -227,17 +169,27 @@ void print_col(COLUMN* col){
         case INT :
             for (int i = 0 ; i< col->max_size ; i ++ ){
 
-                printf("[%d] %d \n", i,  *((int*)col->data[i]));
-
+                if (col->data[i] == NULL){
+                    printf("[%d] NULL \n",i);
+                }
+                else {
+                    printf("[%d] %d \n", i, *((int *) col->data[i]));
+                }
 
             }
+            break ;
         case CHAR :
-            for (int i = 0 ; i< col->max_size ; i ++ ){
-
-                printf("[%d] %c \n", i,  *((char*)col->data[i]));
-
+            //printf("[0] %c \n", col->data[0]->char_value);
+            for (int i = 0 ; i < col->size ; i ++ ){
+                if (col->data[i] == NULL){
+                    printf("[%d] NULL \n",i);
+                }
+                else {
+                    printf("[%d] %c \n", i, (col->data[i]->char_value));
+                }
 
             }
+            break ;
         case FLOAT :
             for (int i = 0 ; i< col->max_size ; i ++ ){
 
@@ -245,6 +197,7 @@ void print_col(COLUMN* col){
 
 
             }
+            break ;
         case DOUBLE :
             for (int i = 0 ; i< col->max_size ; i ++ ){
 
@@ -252,6 +205,7 @@ void print_col(COLUMN* col){
 
 
             }
+            break ;
         case STRING :
             for (int i = 0 ; i< col->max_size ; i ++ ){
 
@@ -259,6 +213,7 @@ void print_col(COLUMN* col){
 
 
             }
+            break ;
         case STRUCTURE :
             for (int i = 0 ; i< col->max_size ; i ++ ){
 
@@ -266,6 +221,7 @@ void print_col(COLUMN* col){
 
 
             }
+            break ;
 
     }
 
