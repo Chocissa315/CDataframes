@@ -8,22 +8,24 @@ CDATAFRAME *create_cdataframe(ENUM_TYPE *cdftype, int size) {
     char title[100];
     COLUMN *dat;
     lnode *ptemp;
-    list *cdf;
+    CDATAFRAME *cdf = NULL;
+    list *liste = NULL;
 
     printf("Enter the column's name: ");
     scanf("%s", title);
 
-    cdf = lst_create_list(); /* Creates the list/datafram */
+    liste = lst_create_list(); /* Creates the list/dataframe */
 
     for (int i = 0; i < size; i++) {
         dat = create_column(*cdftype, title); /* Creates a column */
         ptemp = lst_create_lnode(dat); /* Creates a node with the column */
         if (i == 0) {
-            lst_insert_head(cdf, ptemp); /* If it's the first iteration then we insert a head */
+            lst_insert_head(liste, ptemp); /* If it's the first iteration then we insert a head */
         } else {
-            lst_insert_tail(cdf, ptemp); /* Each time we need to create a new column, it inserts it as a tail like this we are sure that it will be added to the end of the list*/
+            lst_insert_tail(liste, ptemp); /* Each time we need to create a new column, it inserts it as a tail like this we are sure that it will be added to the end of the list*/
         }
     }
+    cdf = &liste;
 
     return cdf;
 }
@@ -42,18 +44,12 @@ void delete_cdataframe(CDATAFRAME **cdf){
 
 }
 
-void delete_col(CDATAFRAME *cdf, char *col_name){
+//void delete_col(CDATAFRAME *cdf, char *col_name){
     // Works like the delete_cdataframe function
-    lnode *actual_node;
-
-    actual_node = get_first_node(cdf);
-
-    while(actual_node != NULL){
-
-    }
+ //   delete_column(&col_name);
 
     // I  have to go through the list and found the node having the same name as the column then delete t=it
-}
+//}
 
 int get_cdataframe_cols_size(CDATAFRAME *cdf){
     /* For this function we take the first and last node. We set the actual node as the first one and iterate through the list going to the next_node until the actual node equals the last one.
