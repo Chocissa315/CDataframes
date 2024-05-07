@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.3.2\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2023.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\barry\OneDrive\Bureau\L1\Projet Transverse\Efrei jump\CDataframes"
+CMAKE_SOURCE_DIR = C:\Users\noahj\CLionProjects\CDataframes
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\barry\OneDrive\Bureau\L1\Projet Transverse\Efrei jump\CDataframes\cmake-build-debug"
+CMAKE_BINARY_DIR = C:\Users\noahj\CLionProjects\CDataframes\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = "C:\Users\barry\OneDrive\Bureau\L1\Projet Transverse\Efrei ju
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2023.3.2\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2023.3.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\barry\OneDrive\Bureau\L1\Projet Transverse\Efrei jump\CDataframes\cmake-build-debug\CMakeFiles" "C:\Users\barry\OneDrive\Bureau\L1\Projet Transverse\Efrei jump\CDataframes\cmake-build-debug\\CMakeFiles\progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\noahj\CLionProjects\CDataframes\cmake-build-debug\CMakeFiles C:\Users\noahj\CLionProjects\CDataframes\cmake-build-debug\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\barry\OneDrive\Bureau\L1\Projet Transverse\Efrei jump\CDataframes\cmake-build-debug\CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\noahj\CLionProjects\CDataframes\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -176,6 +176,30 @@ cdataframe.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CDataframes.dir\build.make CMakeFiles/CDataframes.dir/cdataframe.c.s
 .PHONY : cdataframe.c.s
 
+list.obj: list.c.obj
+.PHONY : list.obj
+
+# target to build an object file
+list.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CDataframes.dir\build.make CMakeFiles/CDataframes.dir/list.c.obj
+.PHONY : list.c.obj
+
+list.i: list.c.i
+.PHONY : list.i
+
+# target to preprocess a source file
+list.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CDataframes.dir\build.make CMakeFiles/CDataframes.dir/list.c.i
+.PHONY : list.c.i
+
+list.s: list.c.s
+.PHONY : list.s
+
+# target to generate assembly for a file
+list.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CDataframes.dir\build.make CMakeFiles/CDataframes.dir/list.c.s
+.PHONY : list.c.s
+
 main.obj: main.c.obj
 .PHONY : main.obj
 
@@ -215,6 +239,9 @@ help:
 	@echo ... cdataframe.obj
 	@echo ... cdataframe.i
 	@echo ... cdataframe.s
+	@echo ... list.obj
+	@echo ... list.i
+	@echo ... list.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
