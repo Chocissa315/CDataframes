@@ -66,10 +66,23 @@ void convert_value(COLUMN *col, unsigned long long int i, char *str, int size);
 
 void print_col(COLUMN* col);
 
+//In addition to the above functions, we need to implement all the functions that enable the following
+//operations to be carried out:
+// Return the number of occurrences of a value x (x given as a parameter).
+// Return the value present at position x (x given as a parameter).
+// Return the number of values that are greater than x (x given as a parameter).
+// Return the number of values that are less than x (x given as a parameter).
+// Return the number of values which are equal to x (x given as a parameter).
 
+int nb_occurrences(COLUMN * col, void * value, ENUM_TYPE type_of_data);
 
+void* value_at_index(COLUMN * col, int x);
 
+int values_greater_than(COLUMN * col, void * x, ENUM_TYPE type_of_data);
 
+int values_lower_than(COLUMN * col, void* x, ENUM_TYPE type_of_data);
+
+int values_equal_to(COLUMN * col, void * x, ENUM_TYPE type_of_data);
 
 void test();
 
