@@ -55,10 +55,10 @@ int insert_value(COLUMN *col, void *value, ENUM_TYPE type_of_data){
                 //case where we need to extend the size but there's already a space allocated : use realloc
 
 
-                col->data = realloc(col->data, (col->max_size+ 3)*sizeof (COL_TYPE* ));
+                col->data = realloc(col->data, (col->max_size+ REALOC_SIZE)*sizeof (COL_TYPE* ));
 
 
-                col->max_size +=3;
+                col->max_size +=REALOC_SIZE;
 
             }
         }
