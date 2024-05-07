@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define REALOC_SIZE  256
 
 void test(){
 
@@ -54,10 +55,10 @@ int insert_value(COLUMN *col, void *value, ENUM_TYPE type_of_data){
                 //case where we need to extend the size but there's already a space allocated : use realloc
 
 
-                col->data = realloc(col->data, (col->max_size+ 3)*sizeof (COL_TYPE* ));
+                col->data = realloc(col->data, (col->max_size+ REALOC_SIZE)*sizeof (COL_TYPE* ));
 
 
-                col->max_size +=3;
+                col->max_size +=REALOC_SIZE;
 
             }
         }
@@ -136,28 +137,33 @@ void delete_column(COLUMN **col){
 
 void convert_value(COLUMN *col, unsigned long long int i, char *str, int size){
 
+    if (col->data[i] == NULL){
+        str = "lababaj";
+    }
 
-    switch (col->column_type) {
+    else {
+        switch (col->column_type) {
 
-        case INT :
-            snprintf(str, size, "%d", *((int*)col->data[i]));
-            break;
-        case FLOAT :
-            snprintf(str, size, "%f", *((float*)col->data[i]));
-            break;
-        case CHAR :
-            snprintf(str, size, "%c", *((char*)col->data[i]));
-            break;
-        case DOUBLE :
-            snprintf(str, size, "%lf", *((double*)col->data[i]));
-            break;
-        case STRING :
-            snprintf(str, size, "%s", *((char**)col->data[i]));
-            break;
-        case STRUCTURE :
-            //snprintf(str, size, "", *((STRUCT*)col->data[i]));
-            break;
+            case INT :
+                snprintf(str, size, "%d", *((int *) col->data[i]));
+                break;
+            case FLOAT :
+                snprintf(str, size, "%f", *((float *) col->data[i]));
+                break;
+            case CHAR :
+                snprintf(str, size, "%c", *((char *) col->data[i]));
+                break;
+            case DOUBLE :
+                snprintf(str, size, "%lf", *((double *) col->data[i]));
+                break;
+            case STRING :
+                snprintf(str, size, "%s", *((char **) col->data[i]));
+                break;
+            case STRUCTURE :
+                //snprintf(str, size, "", *((STRUCT*)col->data[i]));
+                break;
 
+        }
     }
 
 }
@@ -227,10 +233,434 @@ void print_col(COLUMN* col){
 
 }
 
+int nb_occurrences(COLUMN * col, void * value, ENUM_TYPE type_of_data){
+
+    if (type_of_data != col->column_type){
+
+        return -1 ;
+
+    }
+
+    int occurrences = 0 ;
+
+    switch (type_of_data){
+
+        case INT :
+            for (int i = 0 ; i < col->size ; i++){
+
+                if (col->data[i]!=NULL) {
+
+                    if (*((int *) (col->data[i])) == *((int *) value)) {
+
+                        occurrences += 1;
+
+                    }
+                }
+            }
+            break ;
+
+        case CHAR :
+            for (int i = 0 ; i < col->size ; i++){
+                if (col->data[i]!=NULL) {
+                    if (*((char *) (col->data[i])) == *((char *) value)) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+            }
+            break ;
+
+        case FLOAT :
+            for (int i = 0 ; i < col->size ; i++){
+
+                if (col->data[i]!=NULL) {
+                    if (*((float *) (col->data[i])) == *((float *) value)) {
+
+                        occurrences += 1;
+
+                    }
+                }
+            }
+            break ;
+
+        case DOUBLE :
+            for (int i = 0 ; i < col->size ; i++){
+
+                if (col->data[i]!=NULL) {
+                    if (*((double *) (col->data[i])) == *((double *) value)) {
+
+                        occurrences += 1;
+
+                    }
+                }
+            }
+            break ;
+
+        case STRING :
+            for (int i = 0 ; i < col->size ; i++){
+
+                if (col->data[i]!=NULL) {
+                    if (*((char **) (col->data[i])) == *((char **) value)) {
+
+                        occurrences += 1;
+
+                    }
+                }
+            }
+            break ;
+
+    }
 
 
+    return occurrences;
+}
+
+void * value_at_index(COLUMN * col, int x){
+
+    if (col->size <= x || x < 0 || col->data[x] == NULL ){
+
+        return NULL ;
+
+    }
+
+    return ((col->data[x])) ;
+}
+
+int values_greater_than(COLUMN * col, void * x, ENUM_TYPE type_of_data){
+
+    if (x == NULL){
+
+        return 0 ;
+
+    }
+    if (type_of_data != col->column_type){
+
+        return -1 ;
+
+    }
+
+    int occurrences = 0 ;
+
+    switch (type_of_data){
+
+        case INT :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(int *) col->data[i] > *(int *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
 
 
+            }
+            break ;
+
+        case CHAR :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(char *) col->data[i] > *(char *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case FLOAT :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(float *) col->data[i] > *(float *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case DOUBLE :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(double *) col->data[i] > *(double *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case STRING :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(char**) col->data[i] > *(char**) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case UINT :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(unsigned int *) col->data[i] > *(unsigned int *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+    }
+
+    return occurrences ;
+}
+
+int values_lower_than(COLUMN * col, void * x, ENUM_TYPE type_of_data){
+
+    if (x == NULL){
+
+        return 0 ;
+
+    }
+    if (type_of_data != col->column_type){
+
+        return -1 ;
+
+    }
+
+    int occurrences = 0 ;
+
+    switch (type_of_data){
+
+        case INT :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(int *) col->data[i] < *(int *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case CHAR :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(char *) col->data[i] < *(char *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case FLOAT :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(float *) col->data[i] < *(float *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case DOUBLE :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(double *) col->data[i] < *(double *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case STRING :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(char**) col->data[i] < *(char**) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case UINT :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(unsigned int *) col->data[i] < *(unsigned int *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+    }
+
+    return occurrences ;
+}
+
+
+int values_equal_to(COLUMN * col, void * x, ENUM_TYPE type_of_data){
+
+    if (x == NULL){
+
+        return 0 ;
+
+    }
+    if (type_of_data != col->column_type){
+
+        return -1 ;
+
+    }
+
+    int occurrences = 0 ;
+
+    switch (type_of_data){
+
+        case INT :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(int *) col->data[i] == *(int *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case CHAR :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(char *) col->data[i] == *(char *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case FLOAT :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(float *) col->data[i] == *(float *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case DOUBLE :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(double *) col->data[i] == *(double *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case STRING :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(char**) col->data[i] == *(char**) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+
+        case UINT :
+            for (int i = 0 ; i < col->size ; i++ ){
+                if(col->data[i] != NULL) {
+
+                    if (*(unsigned int *) col->data[i] == *(unsigned int *) x) {
+
+                        occurrences += 1;
+
+                    }
+                }
+
+
+            }
+            break ;
+    }
+
+    return occurrences ;
+}
 
 
 
