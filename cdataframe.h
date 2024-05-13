@@ -1,10 +1,14 @@
 
 #include "Column.h"
+#include "list.h"
 
 #define _CDATAFRAME_H_
 
 
-typedef struct CDATAFRAME CDATAFRAME;
+typedef struct CDATAFRAME{
+    list *lst;
+
+}CDATAFRAME;
 
 CDATAFRAME *create_cdataframe(ENUM_TYPE *cdftype, int size);
 
@@ -32,8 +36,7 @@ int get_cdataframe_cols_size(CDATAFRAME *cdf);
 
 /* FUNCTIONS TO FILL
  *
- * Create an empty CDataframe
-CDATAFRAME *create_cdataframe(ENUM_TYPE *cdftype, int size);
+
 
 * Fill the CDataframe with the user input
  *
