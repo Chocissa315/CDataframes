@@ -18,7 +18,7 @@ int main(){
 
     print_col(mycol);
 
-    int x = 0 ;
+    int x = 1 ;
 
     char* value = (char*)value_at_index(mycol, x) ;
 

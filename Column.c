@@ -138,7 +138,7 @@ void delete_column(COLUMN **col){
 void convert_value(COLUMN *col, unsigned long long int i, char *str, int size){
 
     if (col->data[i] == NULL){
-        str = "lababaj";
+        str = " ";
     }
 
     else {
