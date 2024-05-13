@@ -89,3 +89,44 @@ void delete_col(CDATAFRAME *cdf, char *col_name){
 
     // I  have to go through the list and found the node having the same name as the column then delete t=it
 }
+
+lnode* get_col_from_name(CDATAFRAME* cdf, char* col_name){
+
+    lnode * actual_node = get_first_node(cdf->lst);
+    int size = get_cdataframe_cols_size(cdf);
+
+    int i = 0 ;
+
+    while (i < size){
+
+        if(strcmp(((COLUMN*)actual_node->data)->title, col_name)){
+
+            return actual_node ;
+
+        }
+
+        actual_node = actual_node->next ;
+        i++;
+
+    }
+
+    return NULL ;
+}
+
+int enter_value_at_col(CDATAFRAME * cdf,char* col_name, void* value, ENUM_TYPE type_of_data){
+
+    lnode * col = get_col_from_name(cdf, col_name);
+
+    if (col == NULL){
+        return 0;
+    }
+
+
+    if(type_of_data!= ((COLUMN*)col->data)->column_type){
+        return 0 ;
+    }
+
+    insert_value(((COLUMN*)col->data), value, type_of_data);
+
+    return 1;
+}

@@ -6,6 +6,7 @@
 
 
 typedef struct CDATAFRAME{
+
     list *lst;
 
 }CDATAFRAME;
@@ -32,7 +33,9 @@ void delete_col(CDATAFRAME *cdf, char *col_name);
 */
 int get_cdataframe_cols_size(CDATAFRAME *cdf);
 
+lnode* get_col_from_name(CDATAFRAME* cdf, char* col_name);
 
+int enter_value_at_col(CDATAFRAME * cdf,char* col_name, void* value, ENUM_TYPE type_of_data);
 
 /* FUNCTIONS TO FILL
  *
