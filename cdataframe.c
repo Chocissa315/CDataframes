@@ -66,6 +66,7 @@ int get_cdataframe_cols_size(CDATAFRAME *cdf){
 }
 
 
+
 void delete_col(CDATAFRAME *cdf, char *col_name){
 
     // Works like the delete_cdataframe function
