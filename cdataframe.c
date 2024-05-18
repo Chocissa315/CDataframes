@@ -360,15 +360,33 @@ void add_line(CDATAFRAME* cdf){
 
 }
 
-void delete_line(CDATAFRAME *cdf, int index_line){
+int delete_line(CDATAFRAME *cdf, int index_line){
 
     int size = get_cdataframe_cols_size(cdf);
     lnode * actual_node = cdf->lst->head ;
     for (int i = 0 ; i < size ; i++){
 
+        if (((COLUMN*)actual_node->data)->size <= index_line){
+            return 0 ;
+        }
+        ((COLUMN*)actual_node->data)->data[index_line] = NULL ;
+
+        actual_node = actual_node->next ;
 
     }
+    return 1 ;
+}
+
+void add_col(CDATAFRAME * cdf, ENUM_TYPE type, char* title){
+
+    COLUMN * col = create_column(type, title);
+
+    lnode * node = lst_create_lnode(col);
+
+    lst_insert_tail(cdf->lst, node) ;
 
 }
+
+
 
 

@@ -47,6 +47,8 @@ void print_cols_by_name(CDATAFRAME * cdf, char ** list_of_names_cols_to_print, i
 
 void add_line(CDATAFRAME* cdf);
 
+int delete_line(CDATAFRAME *cdf, int index_line) ;
+
 /* FUNCTIONS TO FILL
  *
 
