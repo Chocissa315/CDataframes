@@ -41,6 +41,12 @@ int hard_filling_of_column(CDATAFRAME * cdf, char * col_name, int nb_of_values);
 
 void print_all_cdataframe(CDATAFRAME* cdf);
 
+void print_lines_of_col_up_to(CDATAFRAME *cdf, char* col_name, unsigned int max_lines);
+
+void print_cols_by_name(CDATAFRAME * cdf, char ** list_of_names_cols_to_print, int nb_of_cols_to_print);
+
+void add_line(CDATAFRAME* cdf);
+
 /* FUNCTIONS TO FILL
  *
 

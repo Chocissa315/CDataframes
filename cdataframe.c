@@ -214,8 +214,161 @@ void print_all_cdataframe(CDATAFRAME* cdf){
 
 }
 
+void print_lines_of_col_up_to(CDATAFRAME *cdf, char* col_name, unsigned int max_lines){
+    COLUMN * col = get_col_from_name(cdf, col_name)->data;
+
+    //copy of print_col, but with limitations on the number :
+
+    if (max_lines > col->size){
+        printf("\nError, couldn't print [%d] lines, there is only [%d] of them, "
+               "printing all the lines : \n", max_lines, col->size);
+
+        max_lines = col->size ;
+
+    }
+    max_lines -- ;
+    switch (col->column_type) {
+
+        case INT :
+            for (int i = 0 ; i< max_lines ; i ++ ){
+
+                if (col->data[i] == NULL){
+                    printf("[%d] NULL \n",i);
+                }
+                else {
+                    printf("[%d] %d \n", i, *((int *) col->data[i]));
+                }
+
+            }
+            break ;
+        case CHAR :
+            //printf("[0] %c \n", col->data[0]->char_value);
+            for (int i = 0 ; i < max_lines ; i ++ ){
+                if (col->data[i] == NULL){
+                    printf("[%d] NULL \n",i);
+                }
+                else {
+                    printf("[%d] %c \n", i, (col->data[i]->char_value));
+                }
+
+            }
+            break ;
+        case FLOAT :
+            for (int i = 0 ; i< max_lines ; i ++ ){
+
+                printf("[%d] %f \n", i,  *((float*)col->data[i]));
 
 
+            }
+            break ;
+        case DOUBLE :
+            for (int i = 0 ; i< max_lines ; i ++ ){
 
+                printf("[%d] %lf \n", i,  *((double*)col->data[i]));
+
+
+            }
+            break ;
+        case STRING :
+            for (int i = 0 ; i< max_lines ; i ++ ){
+
+                printf("[%d] %s \n", i,  *((char**)col->data[i]));
+
+
+            }
+        case STRUCTURE :
+            for (int i = 0 ; i< max_lines ; i ++ ){
+
+                //printf("[%d] %STRUCT \n", i,  *((STRUCT*)col->data[i]));
+
+
+            }
+            break ;
+
+
+    }
+
+}
+
+void print_cols_by_name(CDATAFRAME * cdf, char ** list_of_names_cols_to_print, int nb_of_cols_to_print){
+
+    COLUMN * temp ;
+    for (int i = 0 ; i < nb_of_cols_to_print ; i++){
+
+        temp = get_col_from_name(cdf, list_of_names_cols_to_print[i]);
+        print_col(temp);
+
+    }
+
+}
+
+void add_line(CDATAFRAME* cdf){
+
+    int size = get_cdataframe_cols_size(cdf);
+
+    lnode * actual_node = cdf->lst->head ;
+    void * temp ;
+
+    if(actual_node == NULL){
+        size = 1 ;
+    }
+
+    for (int i =0 ; i<size ; i++){
+
+        printf("Enter a value for column '%s' : \n", ((COLUMN*)actual_node->data)->title);
+        switch( ((COLUMN*)actual_node->data)->column_type){
+
+            case UINT :
+                temp = (unsigned int*)malloc(sizeof(unsigned int *));
+                scanf("%d", (unsigned int*)temp);
+                insert_value(actual_node->data, temp, UINT);
+                break ;
+
+            case INT :
+                temp = (int*)malloc(sizeof(int *));
+                scanf("%d", (int*)temp);
+                insert_value(actual_node->data, temp, INT);
+                break ;
+
+            case CHAR :
+                temp = (char*)malloc(sizeof(char*));
+                scanf("%c", (char*)temp);
+                insert_value(actual_node->data, temp, CHAR);
+                break ;
+
+            case FLOAT :
+                temp = (float*)malloc(sizeof(float*));
+                scanf("%f", (float*)temp);
+                insert_value(actual_node->data, temp, FLOAT);
+                break ;
+
+            case DOUBLE :
+                temp = (double*)malloc(sizeof(double*));
+                scanf("%c", (double*)temp);
+                insert_value(actual_node->data, temp, DOUBLE);
+                break ;
+
+            case STRING :
+                temp = (char**)malloc(sizeof(char**));
+                scanf("%s", (char*)temp);
+                insert_value(actual_node->data, temp, STRING);
+                break ;
+        }
+
+        actual_node = actual_node->next ;
+    }
+
+}
+
+void delete_line(CDATAFRAME *cdf, int index_line){
+
+    int size = get_cdataframe_cols_size(cdf);
+    lnode * actual_node = cdf->lst->head ;
+    for (int i = 0 ; i < size ; i++){
+
+
+    }
+
+}
 
 

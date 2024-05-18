@@ -173,7 +173,7 @@ void print_col(COLUMN* col){
     switch (col->column_type) {
 
         case INT :
-            for (int i = 0 ; i< col->max_size ; i ++ ){
+            for (int i = 0 ; i< col->size ; i ++ ){
 
                 if (col->data[i] == NULL){
                     printf("[%d] NULL \n",i);
@@ -197,7 +197,7 @@ void print_col(COLUMN* col){
             }
             break ;
         case FLOAT :
-            for (int i = 0 ; i< col->max_size ; i ++ ){
+            for (int i = 0 ; i< col->size ; i ++ ){
 
                 printf("[%d] %f \n", i,  *((float*)col->data[i]));
 
@@ -205,7 +205,7 @@ void print_col(COLUMN* col){
             }
             break ;
         case DOUBLE :
-            for (int i = 0 ; i< col->max_size ; i ++ ){
+            for (int i = 0 ; i< col->size ; i ++ ){
 
                 printf("[%d] %lf \n", i,  *((double*)col->data[i]));
 
@@ -213,14 +213,14 @@ void print_col(COLUMN* col){
             }
             break ;
         case STRING :
-            for (int i = 0 ; i< col->max_size ; i ++ ){
+            for (int i = 0 ; i< col->size ; i ++ ){
 
                 printf("[%d] %s \n", i,  *((char**)col->data[i]));
 
 
             }
         case STRUCTURE :
-            for (int i = 0 ; i< col->max_size ; i ++ ){
+            for (int i = 0 ; i< col->size ; i ++ ){
 
                 //printf("[%d] %STRUCT \n", i,  *((STRUCT*)col->data[i]));
 
