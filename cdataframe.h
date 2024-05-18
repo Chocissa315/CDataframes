@@ -37,6 +37,10 @@ lnode* get_col_from_name(CDATAFRAME* cdf, char* col_name);
 
 int enter_value_at_col(CDATAFRAME * cdf,char* col_name, void* value, ENUM_TYPE type_of_data);
 
+int hard_filling_of_column(CDATAFRAME * cdf, char * col_name, int nb_of_values);
+
+void print_all_cdataframe(CDATAFRAME* cdf);
+
 /* FUNCTIONS TO FILL
  *
 

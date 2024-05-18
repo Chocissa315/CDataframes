@@ -130,3 +130,92 @@ int enter_value_at_col(CDATAFRAME * cdf,char* col_name, void* value, ENUM_TYPE t
 
     return 1;
 }
+
+int hard_filling_of_column(CDATAFRAME * cdf, char * col_name, int nb_of_values){
+
+    lnode * col = get_col_from_name(cdf, col_name);
+
+    if (col == NULL){
+        return 0;
+    }
+
+    switch (((COLUMN*)col->data)->column_type){
+
+        void *  val ;
+        case NULLVAL :
+            insert_value(col->data, NULL, NULLVAL) ;
+
+        case UINT :
+            val = (unsigned int *)malloc(sizeof(unsigned int*));
+            for (int i = 0  ; i < nb_of_values ; i++){
+                printf("\nEnter value at index [%d] : \n", i);
+                scanf("%d", (unsigned int *)val);
+                insert_value(col->data, val, UINT) ;
+            }
+
+        case INT :
+            val = (int *)malloc(sizeof(int*));
+            for (int i = 0  ; i < nb_of_values ; i++){
+                printf("\nEnter value at index [%d] : \n", i);
+                scanf("%d", (int *)val);
+                insert_value(col->data, val, INT) ;
+            }
+
+        case FLOAT :
+            val = (float *)malloc(sizeof(float*));
+            for (int i = 0  ; i < nb_of_values ; i++){
+                printf("\nEnter value at index [%d] : \n", i);
+                scanf("%f", (float *)val);
+                insert_value(col->data, val, FLOAT) ;
+            }
+
+        case DOUBLE :
+            val = (double *)malloc(sizeof(double*));
+            for (int i = 0  ; i < nb_of_values ; i++){
+                printf("\nEnter value at index [%d] : \n", i);
+                scanf("%lf", (double *)val);
+                insert_value(col->data, val, DOUBLE) ;
+            }
+
+        case CHAR :
+            val = (char *)malloc(sizeof(char*));
+            for (int i = 0  ; i < nb_of_values ; i++){
+                printf("\nEnter value at index [%d] : \n", i);
+                scanf("%c", (char *)val);
+                insert_value(col->data, val, CHAR) ;
+            }
+
+        case STRING :
+            val = (char*)malloc(sizeof(char*));
+            for (int i = 0  ; i < nb_of_values ; i++){
+                printf("\nEnter value at index [%d] : \n", i);
+                scanf("%s", (char*)val);
+                insert_value(col->data, &val, STRING) ;
+            }
+    }
+
+    return 1 ;
+}
+
+
+void print_all_cdataframe(CDATAFRAME* cdf){
+
+    lnode * actual_node = cdf->lst ;
+
+    if (actual_node != NULL) {
+        while (actual_node->next != NULL) {
+
+            print_col(actual_node->data);
+            actual_node = actual_node->next ;
+            printf("\n");
+
+        }
+    }
+
+}
+
+
+
+
+
+
