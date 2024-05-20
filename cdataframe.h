@@ -31,7 +31,7 @@ void delete_col(CDATAFRAME *cdf, char *col_name);
 * @param1: Point to the CDataframe
 * @return: Number of columns in the CDataframe
 */
-int get_cdataframe_cols_size(CDATAFRAME *cdf);
+int get_cdataframe_cols_size(CDATAFRAME *cdf); //did it
 
 lnode* get_col_from_name(CDATAFRAME* cdf, char* col_name);
 

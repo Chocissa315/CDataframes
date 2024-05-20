@@ -82,12 +82,37 @@ void delete_col(CDATAFRAME *cdf, char *col_name){
             delete_column((COLUMN**)actual_node->data);
 
         }
+        actual_node = get_next_node(cdf->lst, actual_node);
 
 
     }
 
 
     // I  have to go through the list and found the node having the same name as the column then delete t=it
+}
+
+
+void display_cdataframe(CDATAFRAME *cdf){
+    int nb_col, j;
+    COLUMN *column;
+    lnode *actual_node;
+    ENUM_TYPE coltype;
+    j = 0;
+
+    actual_node = get_first_node(cdf->lst);
+
+    nb_col = get_cdataframe_cols_size(cdf);
+
+
+    for(int i =0; i < nb_col;i++){
+        while(j < i){
+            printf("              ");
+        }
+        column = (COLUMN*)actual_node->data;
+        print_col(column);
+        actual_node = get_next_node(cdf->lst,actual_node);
+    }
+
 }
 
 lnode* get_col_from_name(CDATAFRAME* cdf, char* col_name){

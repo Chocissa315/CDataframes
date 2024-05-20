@@ -6,8 +6,19 @@
 
 int main(){
 
-    COLUMN *mycol = create_column(CHAR, "Column 1");
 
+
+    printf("_____________________________________ fonctions q tester _____________________________________\n");
+
+    printf("_____________________________________Columns_____________________________________\n");
+
+
+
+    COLUMN *mycol = create_column(CHAR, "Column 1");
+    printf("kakou");
+    for(int i = 0; i < 100;i++);
+    printf("     ");
+    printf("kakou");
     char a = 'A', c = 'C';
 
     insert_value(mycol, &a, CHAR);
@@ -16,8 +27,9 @@ int main(){
 
     insert_value(mycol, &c, CHAR);
 
-    print_col(mycol);
-
+    for(int i = 0; i < 5;i++){
+        print_col(mycol);
+    }
     int x = 1 ;
 
     char* value = (char*)value_at_index(mycol, x) ;
@@ -38,12 +50,9 @@ int main(){
 
     char nul = ' ' ;
 
-    printf("\n the number is : %d ", values_greater_than(mycol, &nul, CHAR));
+    printf("\n the number is : %d \n", values_greater_than(mycol, &nul, CHAR));
 
     delete_column(&mycol);
-
-
-
 
 
     return 0;
