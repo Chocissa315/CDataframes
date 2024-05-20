@@ -169,7 +169,12 @@ void convert_value(COLUMN *col, unsigned long long int i, char *str, int size){
 }
 
 void print_col(COLUMN* col){
+    if(col == NULL){
 
+        printf("\nThis column does not exist");
+        return ;
+
+    }
     switch (col->column_type) {
 
         case INT :

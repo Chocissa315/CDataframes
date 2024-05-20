@@ -101,6 +101,12 @@
 		<Unit filename="C:/Users/barry/CLionProjects/CDataframes2.0/cdataframe.h">
 			<Option target="CDataframes"/>
 		</Unit>
+		<Unit filename="C:/Users/barry/CLionProjects/CDataframes2.0/functions.c">
+			<Option target="CDataframes"/>
+		</Unit>
+		<Unit filename="C:/Users/barry/CLionProjects/CDataframes2.0/functions.h">
+			<Option target="CDataframes"/>
+		</Unit>
 		<Unit filename="C:/Users/barry/CLionProjects/CDataframes2.0/list.c">
 			<Option target="CDataframes"/>
 		</Unit>

@@ -10,7 +10,7 @@ bool check_value(CDATAFRAME *cdf, void *value, ENUM_TYPE type_of_value); //did
 COL_TYPE* access_cdataframe(CDATAFRAME *cdf, int row_nb, int col_nb); //dud
 void replace_cdataframe(CDATAFRAME *cdf, int row_nb, int col_nb, COL_TYPE new_val);
 
-void display_col_name(CDATAFRAME *cdf); //did
+void display_col_name(CDATAFRAME *cdf);
 
 void display_nb_rows(CDATAFRAME *cdf,char *col_name); //did
 

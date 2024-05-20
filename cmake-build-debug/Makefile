@@ -176,6 +176,30 @@ cdataframe.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CDataframes.dir\build.make CMakeFiles/CDataframes.dir/cdataframe.c.s
 .PHONY : cdataframe.c.s
 
+functions.obj: functions.c.obj
+.PHONY : functions.obj
+
+# target to build an object file
+functions.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CDataframes.dir\build.make CMakeFiles/CDataframes.dir/functions.c.obj
+.PHONY : functions.c.obj
+
+functions.i: functions.c.i
+.PHONY : functions.i
+
+# target to preprocess a source file
+functions.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CDataframes.dir\build.make CMakeFiles/CDataframes.dir/functions.c.i
+.PHONY : functions.c.i
+
+functions.s: functions.c.s
+.PHONY : functions.s
+
+# target to generate assembly for a file
+functions.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CDataframes.dir\build.make CMakeFiles/CDataframes.dir/functions.c.s
+.PHONY : functions.c.s
+
 list.obj: list.c.obj
 .PHONY : list.obj
 
@@ -239,6 +263,9 @@ help:
 	@echo ... cdataframe.obj
 	@echo ... cdataframe.i
 	@echo ... cdataframe.s
+	@echo ... functions.obj
+	@echo ... functions.i
+	@echo ... functions.s
 	@echo ... list.obj
 	@echo ... list.i
 	@echo ... list.s

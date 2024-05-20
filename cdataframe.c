@@ -6,14 +6,15 @@
 
 
 CDATAFRAME *create_cdataframe(ENUM_TYPE *cdftype, int size) {
-    char title[100];
+    char *title = "cdataframe";
     COLUMN *dat;
     lnode *ptemp;
-    CDATAFRAME *cdf = NULL;
+    CDATAFRAME *cdf = malloc(sizeof(CDATAFRAME));
     list *liste = NULL;
 
-    printf("Enter the column's name: ");
-    scanf("%s", title);
+    title = malloc(sizeof(char)*strlen("cdataframe")+1);
+    strcpy(title, "cdataframe");
+
 
     liste = lst_create_list(); /* Creates the list/dataframe */
 
@@ -107,6 +108,7 @@ void display_cdataframe(CDATAFRAME *cdf){
     for(int i =0; i < nb_col;i++){
         while(j < i){
             printf("              ");
+            j++;
         }
         column = (COLUMN*)actual_node->data;
         print_col(column);
@@ -320,7 +322,7 @@ void print_cols_by_name(CDATAFRAME * cdf, char ** list_of_names_cols_to_print, i
     COLUMN * temp ;
     for (int i = 0 ; i < nb_of_cols_to_print ; i++){
 
-        temp = get_col_from_name(cdf, list_of_names_cols_to_print[i]);
+        temp = ((COLUMN*)get_col_from_name(cdf, list_of_names_cols_to_print[i])->data);
         print_col(temp);
 
     }
