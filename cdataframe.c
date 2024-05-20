@@ -1,4 +1,4 @@
-//CDATAFRAME Idrissa Barry & Noah Jeandeau file of functions related to double linked lists (not for user)
+//CDATAFRAME Idrissa Barry & Noah Jeandeau file of functions related to cdataframes
 
 #include "cdataframe.h"
 #include "list.h"

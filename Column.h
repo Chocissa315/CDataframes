@@ -1,3 +1,4 @@
+//CDATAFRAME Idrissa Barry & Noah Jeandeau file of functions related to columns (not for user)
 
 #ifndef _CDATAFRAMES_COLUMN_H
 #define _CDATAFRAMES_COLUMN_H

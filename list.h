@@ -1,3 +1,5 @@
+//CDATAFRAME Idrissa Barry & Noah Jeandeau file of functions related to double linked lists (not for user)
+
 #ifndef _LIST_H_
 #define _LIST_H_
 /**

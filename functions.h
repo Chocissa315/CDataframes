@@ -1,3 +1,4 @@
+//CDATAFRAME Idrissa Barry & Noah Jeandeau file of functions related to functions (not for user)
 
 #define _FUNCTIONS_H_
 #include "cdataframe.h"

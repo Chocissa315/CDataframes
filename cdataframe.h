@@ -1,3 +1,4 @@
+//CDATAFRAME Idrissa Barry & Noah Jeandeau file of functions related to cdataframes
 
 #include "Column.h"
 #include "list.h"
