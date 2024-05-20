@@ -1,3 +1,5 @@
+//CDATAFRAME Idrissa Barry & Noah Jeandeau file of functions related to columns (not for user)
+
 #include "Column.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,7 +12,7 @@ void test(){
 
 }
 
-
+//function that creates a column, takes as parameter the type of variable the column will contain and its name
 COLUMN *create_column(ENUM_TYPE type , char* title){
 
     //creation of the column
@@ -35,7 +37,8 @@ COLUMN *create_column(ENUM_TYPE type , char* title){
 
 }
 
-
+//function that inserts a value inside a column. Takes as parameter the column, the value, and the type of value
+// returns 1 if succed, 0 else
 int insert_value(COLUMN *col, void *value, ENUM_TYPE type_of_data){
 
     if (type_of_data == col->column_type) {
@@ -43,7 +46,7 @@ int insert_value(COLUMN *col, void *value, ENUM_TYPE type_of_data){
         if (col->size >= col->max_size) {
 
             if (col->max_size == 0) {
-            //this is the case where the list is empty and hence not yet initialized
+                //this is the case where the list is empty and hence not yet initialized
 
                 col->data = (COL_TYPE **) malloc (sizeof(COL_TYPE*));
 
@@ -104,7 +107,7 @@ int insert_value(COLUMN *col, void *value, ENUM_TYPE type_of_data){
 
 
 
-            }
+        }
 
         else{
             (col->data[col->size]) = NULL;
@@ -122,6 +125,7 @@ int insert_value(COLUMN *col, void *value, ENUM_TYPE type_of_data){
     }
 }
 
+//function that deletes a column by freeing the allocated memory linked to it, takes the column as parameter
 void delete_column(COLUMN **col){
 
     free((*col)->data);
@@ -135,6 +139,8 @@ void delete_column(COLUMN **col){
 
 }
 
+// function that converts a value into string in order to be able to print it without knowing its type.
+//takes as parameter the column, the index of the value, a buffer to store the converted string, and the max size of the string
 void convert_value(COLUMN *col, unsigned long long int i, char *str, int size){
 
     if (col->data[i] == NULL){
@@ -168,13 +174,9 @@ void convert_value(COLUMN *col, unsigned long long int i, char *str, int size){
 
 }
 
+//function that prints a whole column. takes as parameter a pointer to the column
 void print_col(COLUMN* col){
-    if(col == NULL){
 
-        printf("\nThis column does not exist");
-        return ;
-
-    }
     switch (col->column_type) {
 
         case INT :
@@ -238,6 +240,8 @@ void print_col(COLUMN* col){
 
 }
 
+// function that returns the number of occurences of a value inside a column.
+//takes as parameter a pointer to the column, the value to search for, and the type of data that the value is
 int nb_occurrences(COLUMN * col, void * value, ENUM_TYPE type_of_data){
 
     if (type_of_data != col->column_type){
@@ -322,6 +326,7 @@ int nb_occurrences(COLUMN * col, void * value, ENUM_TYPE type_of_data){
     return occurrences;
 }
 
+//function that returns the value at an index inside a column, both given as parameter
 void * value_at_index(COLUMN * col, int x){
 
     if (col->size <= x || x < 0 || col->data[x] == NULL ){
@@ -333,6 +338,8 @@ void * value_at_index(COLUMN * col, int x){
     return ((col->data[x])) ;
 }
 
+// function that returns the amount of values inside the column greater than a given value as parameter
+// also takes as parameter the column and the type of value
 int values_greater_than(COLUMN * col, void * x, ENUM_TYPE type_of_data){
 
     if (x == NULL){
@@ -444,6 +451,8 @@ int values_greater_than(COLUMN * col, void * x, ENUM_TYPE type_of_data){
     return occurrences ;
 }
 
+// function that returns the amount of values inside the column lower than a given value as parameter
+// also takes as parameter the column and the type of value
 int values_lower_than(COLUMN * col, void * x, ENUM_TYPE type_of_data){
 
     if (x == NULL){
@@ -555,7 +564,8 @@ int values_lower_than(COLUMN * col, void * x, ENUM_TYPE type_of_data){
     return occurrences ;
 }
 
-
+// function that returns the amount of values inside the column equal to a given value as parameter
+// also takes as parameter the column and the type of value
 int values_equal_to(COLUMN * col, void * x, ENUM_TYPE type_of_data){
 
     if (x == NULL){
@@ -666,6 +676,5 @@ int values_equal_to(COLUMN * col, void * x, ENUM_TYPE type_of_data){
 
     return occurrences ;
 }
-
 
 

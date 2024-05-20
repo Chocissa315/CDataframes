@@ -29,3 +29,7 @@ The bidirectional allows us to ensure a better access, allowing us to go through
 also a lot of flexibility : we can change direction and move to the next or the previous node (and therefore column)
 whenever we need it.
 Moreover, this type of structure allows us to be more free while manipulating the columns, and has better flexibility.
+
+HOW TO USE THE FUNCTIONS ?
+
+Every important function is written in the main, you can directly change the given values or copy how we used the functions to try them all.
