@@ -8,7 +8,7 @@
 int main(){
 
 
-
+    printf("**********Columns**********\n");
     // Create a column
     COLUMN *col = create_column(INT, "Example Column");
 
@@ -26,23 +26,24 @@ int main(){
     printf("Column Title: %s\n", col->title);
     print_col(col);
 
-    // Test other functions
+    // Test of some functions
     printf("\nNumber of occurrences of 20: %d\n", nb_occurrences(col, &value2, INT));
-    printf("Value at index 1: %d\n", *(int*)value_at_index(col, 1));
     printf("Number of values greater than 15: %d\n", values_greater_than(col, &value1, INT));
     printf("Number of values lower than 25: %d\n", values_lower_than(col, &value2, INT));
     printf("Number of values equal to 20: %d\n", values_equal_to(col, &value2, INT));
+    printf("Value at index 1: %d\n", *(int*)value_at_index(col, 1));
 
 
-    printf("trying cdataframes functions\n");
+    printf("\n************CDataframe************\n");
 
-    // Create a cdataframe
+    // Create a CDataframe
     ENUM_TYPE cdftype = INT;
     CDATAFRAME *cdf = create_cdataframe(&cdftype, 3);
 
 
+    printf("\nThere is %d columns in the CDataframe.\n", get_cdataframe_cols_size(cdf));
 
-    // Add a new column
+    // Add new column
     ENUM_TYPE new_col_type = FLOAT;
     ENUM_TYPE second_type = INT;
     char *new_col_title = "New Column";
@@ -51,7 +52,6 @@ int main(){
     add_col(cdf,second_type, sec_title);
 
     //print columns by name
-    // Define an array of column names to print
     char *columns_to_print[] = {"New Column", "Sec col", "col3"};
     int num_columns = sizeof(columns_to_print) / sizeof(columns_to_print[0]);
     printf("Printing columns by name:\n");
