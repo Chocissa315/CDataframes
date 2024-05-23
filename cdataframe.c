@@ -92,30 +92,26 @@ void delete_col(CDATAFRAME *cdf, char *col_name){
 }
 
 // display the cdataframe by columns
-void display_cdataframe(CDATAFRAME *cdf){
+void display_cdataframe(CDATAFRAME *cdf) {
     int nb_col, j;
     COLUMN *column;
     lnode *actual_node;
     ENUM_TYPE coltype;
     j = 0;
 
+
     actual_node = get_first_node(cdf->lst); // we take the first to have the possibility to acces all nodes.
     nb_col = get_cdataframe_cols_size(cdf); //we take the number of columns to not iterate when is not useful.
+    for (int i = 0; i < nb_col; i++) {
+        column = (COLUMN *)actual_node->data ;
 
 
-    for(int i =0; i < nb_col;i++){
-        while(j < i){
-            printf("              "); // allows us to separate columns
-            j++;
-        }
-        column = (COLUMN*)actual_node->data; // acces to the data of the column
         print_col(column);
-        actual_node = get_next_node(cdf->lst,actual_node);
+        actual_node = get_next_node(cdf->lst, actual_node) ;
+
     }
 
 }
-
-
 // allow us to access a column with a given name (we did'nt use it for get_col_size because it was made after but is basically the reasonning and does not really change the run time).
 lnode* get_col_from_name(CDATAFRAME* cdf, char* col_name){
 

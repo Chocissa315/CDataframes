@@ -3,7 +3,8 @@
 #include "Column.h"
 #include "list.h"
 
-
+#ifndef _CDATAFRAMES_cdataframe_H
+#define _CDATAFRAMES_cdataframe_H
 typedef struct CDATAFRAME{
 
     list *lst;
@@ -59,7 +60,7 @@ void display_cdataframe(CDATAFRAME *cdf);
 
 
 
-
+#endif
 
 
 

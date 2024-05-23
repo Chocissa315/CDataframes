@@ -133,10 +133,37 @@ bool check_value(CDATAFRAME *cdf, void *value, ENUM_TYPE type_of_value) {
             for(int j = 0; j < size_col; j++) {
                 COL_TYPE *checker = ((COLUMN*)actual_node->data)->data[j];
                 // Compare the values pointed to by checker and value
-                if (memcmp(checker, value, sizeof(COL_TYPE)) == 0) {
-                    exists = true;
-                    break;  // No need to continue searching if the value is found
+                int equal = 1 ;
+                switch(((COLUMN*)actual_node->data)->column_type){
+
+                    case INT :
+                        if ((int*)checker == (int*)value ) {
+                            exists = true;
+                            break;  // No need to continue searching if the value is found
+                        }
+                    case FLOAT :
+                        if ((float*)checker == (float*)value )  {
+                            exists = true;
+                            break;  // No need to continue searching if the value is found
+                        }
+                    case CHAR :
+                        if ((char*)checker == (char*)value )  {
+                            exists = true;
+                            break;  // No need to continue searching if the value is found
+                        }
+                    case UINT :
+                        if ((unsigned int*)checker == (unsigned int *)value )  {
+                            exists = true;
+                            break;  // No need to continue searching if the value is found
+                        }
+                    case DOUBLE :
+                        if ((double*)checker == (double*)value )  {
+                            exists = true;
+                            break;  // No need to continue searching if the value is found
+                        }
+
                 }
+
             }
         }
         actual_node = get_next_node(cdf->lst, actual_node);

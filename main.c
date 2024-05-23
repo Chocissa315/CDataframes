@@ -64,7 +64,7 @@ int main(){
     title = "Nope";
     enter_value_at_col(cdf, title, &value3, INT);
 
-    float value4 = 3.14;
+    double value4 = 3.14;
     enter_value_at_col(cdf, new_col_title, &value4, FLOAT);
 
     // Display the dataframe
@@ -74,7 +74,7 @@ int main(){
 
     // Add a line
     printf("\nAdding a line...\n");
-   // add_line(cdf);
+   add_line(cdf);
 
     // Display the modified dataframe
     printf("\nModified DataFrame:\n");

@@ -143,7 +143,7 @@ void delete_column(COLUMN **col){
 //takes as parameter the column, the index of the value, a buffer to store the converted string, and the max size of the string
 void convert_value(COLUMN *col, unsigned long long int i, char *str, int size){
 
-    if (col->data[i] == NULL){
+    if (col->data + i == NULL){
         str = " ";
     }
 
@@ -176,6 +176,13 @@ void convert_value(COLUMN *col, unsigned long long int i, char *str, int size){
 
 //function that prints a whole column. takes as parameter a pointer to the column
 void print_col(COLUMN* col){
+
+    if (col->data == NULL && col!= NULL){
+        for (int i = 0 ; i< col->size ; i ++ ){
+            printf("[%d] NULL", i);
+            return ;
+        }
+    }
 
     switch (col->column_type) {
 
