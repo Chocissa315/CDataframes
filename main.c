@@ -74,7 +74,8 @@ int main(){
 
     // Add a line
     printf("\nAdding a line...\n");
-   add_line(cdf);
+    printf("number of columns : %d \n", get_cdataframe_cols_size(cdf));
+    add_line(cdf);
 
     // Display the modified dataframe
     printf("\nModified DataFrame:\n");

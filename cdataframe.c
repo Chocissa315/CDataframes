@@ -102,11 +102,13 @@ void display_cdataframe(CDATAFRAME *cdf) {
 
     actual_node = get_first_node(cdf->lst); // we take the first to have the possibility to acces all nodes.
     nb_col = get_cdataframe_cols_size(cdf); //we take the number of columns to not iterate when is not useful.
+
     for (int i = 0; i < nb_col; i++) {
         column = (COLUMN *)actual_node->data ;
 
-
+        printf("Column : %s\n", column->title);
         print_col(column);
+        printf("*******************\n\n");
         actual_node = get_next_node(cdf->lst, actual_node) ;
 
     }
